@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.apache.httpcomponents:httpclient:4.5.3'
+    }
+}
+
+import org.apache.http.client.HttpClient
+import org.apache.http.client.methods.CloseableHttpResponse
+import org.apache.http.client.methods.HttpGet
+import org.apache.http.impl.client.CloseableHttpClient
+import org.apache.http.impl.client.HttpClients
+
+task get {
+    CloseableHttpClient httpclient = HttpClients.createDefault();
+    HttpGet httpGet = new HttpGet("http://mini.log-g.co/");
+    CloseableHttpResponse response = httpclient.execute(httpGet);
+    println response
+}
